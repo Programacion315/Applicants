@@ -1,0 +1,17 @@
+.postulantes-completo{
+    display: relative;
+}
+
+.postulantes{
+    width: 60%;
+    margin: 0 auto;
+    
+}
+
+.titulo{
+    text-align: center;
+}
+
+p{
+    text-align: center;
+}
