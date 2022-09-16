@@ -20,8 +20,6 @@ const ModeloPostulante = mongoose.model('postulantes', schemapostulante)
 //Agregar postulante
 router.post('/agregarpostulante', (req, res)=>{
     
-    console.log("data extraña")
-    console.log(req.body)
     const nuevoPostulante = new ModeloPostulante({
         nombre: req.body.nombre,
         apellido: req.body.apellido,
@@ -33,7 +31,29 @@ router.post('/agregarpostulante', (req, res)=>{
     nuevoPostulante.save(function(err){
 
         if(!err){
-            res.send('Usuario agregado correctamente')
+            console.log('Usuario agregado correctamente')
+           
+        }
+        else{
+            console.log("Ocurrio un error desde el servidor")
+            
+        }
+    })
+})
+
+//Editar postulante
+router.put('/actualizarpostulante', (req, res)=>{
+    
+   
+    ModeloPostulante.findOneAndUpdate({idpostulante:req.body.idpostulante},{
+        idpostulante: req.body.idpostulante,
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        edad: req.body.edad,
+        sexo: req.body.sexo 
+    }, (err)=>{
+        if(!err){
+            console.log('Usuario actualizado correctamente')
            
         }
         else{
@@ -41,7 +61,26 @@ router.post('/agregarpostulante', (req, res)=>{
             res.send(err)
         }
     })
+
 })
+
+//Eliminar postulante
+
+router.post('/borrarpostulante', (req, res)=>{
+    
+    ModeloPostulante.findOneAndDelete({idpostulante:req.body.idpostulante},
+        (err)=>{
+        if(!err){
+            console.log('Eliminado correctamente')
+           
+        }
+        else{
+            console.log("Ocurrio un error desde el servidor")
+            console.log(err)
+        }
+    })
+})
+
 
 //Traer todos los postulantes
 router.get('/obtenerpostulantes', (req, res)=>{

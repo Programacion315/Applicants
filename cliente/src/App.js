@@ -19,6 +19,7 @@ import {
 import "./App.css";
 import "@coreui/coreui/dist/css/coreui.min.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Error404 } from "./pages/Error404/Error404";
 
 function App() {
   const [visible, setVisible] = useState(false);
@@ -36,8 +37,8 @@ function App() {
           <CCollapse className="navbar-collapse" visible={visible}>
             <CNavbarNav>
               <CNavItem>
-                <CNavLink href="/" active>
-                  Home
+                <CNavLink href="/">
+                  Inicio
                 </CNavLink>
               </CNavItem>
               <CNavItem>
@@ -52,6 +53,8 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />} />
           <Route path="/postulantes" exact element={<Postulantes />}></Route>
+          <Route path="*" exact element={<Error404 />}></Route>
+          
         </Routes>
       </BrowserRouter>
 
